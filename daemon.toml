@@ -1,0 +1,9 @@
+[source]
+type = "N2N"
+address = ["Tcp", "kajko.lan:3001"]
+magic = "mainnet"
+
+[sink]
+type = "Elastic"
+url = "https://localhost:9200"
+index = "oura.sink.v0.mainnet"
