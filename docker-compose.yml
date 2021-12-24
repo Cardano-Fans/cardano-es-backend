@@ -1,19 +1,39 @@
-version: '3'
-
+version: "3.0"
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+    container_name: es-container
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.0
     environment:
-      - cluster.name=docker-cluster
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
+      - xpack.security.enabled=false
+      - "discovery.type=single-node"
+    networks:
+      - es-net
     ports:
-      - "9200:9200"
+      - 9200:9200
   kibana:
-    image: docker.elastic.co/kibana/kibana:6.3.2
+    container_name: kb-container
+    image: docker.elastic.co/kibana/kibana:7.11.0
+    environment:
+      - ELASTICSEARCH_HOSTS=http://es-container:9200
+    networks:
+      - es-net
+    depends_on:
+      - elasticsearch
     ports:
-      - "5601:5601"
+      - 5601:5601
+  oura:
+    command: "./oura daemon --config /daemon/daemon.toml"
+    container_name: oura
+    image: oura:latest
+    environment:
+      - RUST_BACKTRACE=1
+    depends_on:
+      - elasticsearch
+    volumes:
+      - ./daemon:/daemon
+    networks:
+      - es-net
+
+networks:
+  es-net:
+    driver: bridge

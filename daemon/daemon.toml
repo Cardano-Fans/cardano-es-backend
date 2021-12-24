@@ -5,5 +5,5 @@ magic = "mainnet"
 
 [sink]
 type = "Elastic"
-url = "https://localhost:9200"
+url = "http://es-container:9200"
 index = "oura.sink.v0.mainnet"

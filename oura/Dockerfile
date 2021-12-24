@@ -14,7 +14,7 @@ RUN gitrev=v0.3.7 && \
 
 RUN rustup-init -y
 RUN source $HOME/.cargo/env
-RUN $HOME/.cargo/bin/cargo build --features elasticsink --release --locked --target x86_64-unknown-linux-musl
+RUN $HOME/.cargo/bin/cargo build --release --target x86_64-unknown-linux-musl --all-features
 
 FROM alpine:3.15.0
 COPY --from=alpine_builder /code/oura/target/x86_64-unknown-linux-musl/release/oura .
