@@ -7,7 +7,7 @@ It came out of need to simplify exploration of oura and provide a ready made doc
 
 # Build docker oura image
 ```
-sudo docker build -t oura:latest .
+sudo docker build -t oura:3.7 .
 ```
 
 # Running all docker images
