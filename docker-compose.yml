@@ -30,7 +30,7 @@ services:
       - elasticsearch
     volumes:
       - ./daemon:/daemon
-    command: "curl -X PUT http://es-container:9200/_template/oura.sink.v0 -H 'Content-Type: application/json' -d /daemon/@index-template.json && ./oura daemon --config /daemon/daemon.toml"
+    command: "/daemon/start.sh"
     networks:
       - es-net
 
