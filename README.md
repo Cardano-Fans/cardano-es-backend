@@ -1,21 +1,20 @@
 # cardano-es-backend
 
-## Insert template
-```
-curl -X PUT http://localhost:9200/_template/oura.sink.v0 \
-         -H 'Content-Type: application/json' \
-         -d @index-template.json
 
-```
-## Building docker image
-cd oura
+# Introduction
+Project provides a simple docker wrapper around: https://github.com/txpipe/oura/
+It came out of need to simplify exploration of oura and provide a ready made docker-compose script to integrate: oura, elasticsearch and kibana
+
+# Build docker oura image
 ```
 sudo docker build -t oura:latest .
 ```
 
-## Running docker image
+# Running all docker images
 ```
-docker run -ti -v (pwd):/daemon oura:latest /bin/sh
+docker-compose up
+```
 
-docker run -ti -v $(pwd):/daemon oura:latest /bin/sh
-```
+# Exploring
+- Elastic Search -> http://localhost:9200
+- Kibana -> http://localhost:5601
