@@ -23,7 +23,7 @@ services:
       - 5601:5601
   oura:
     container_name: oura
-    image: oura:3.7
+    image: oura:0.3.7
     environment:
       - RUST_BACKTRACE=1
     depends_on:
