@@ -6,7 +6,7 @@ WORKDIR /code/oura
 RUN git config --global init.defaultBranch main &&  \
     git config --global advice.detachedHead false
 
-RUN gitrev=v0.3.7 && \
+RUN gitrev=v0.3.8 && \
     git init && \
     git remote add origin https://github.com/txpipe/oura.git && \
     git fetch --depth 1 origin tag "$gitrev" && \
